@@ -66,7 +66,10 @@
         </ListView>
         <Button x:Name="btn3" Click="getInfoSelectedMob" Content="Editar" HorizontalAlignment="Left" Margin="381,39,0,0" VerticalAlignment="Top" Height="31" Width="99"/>
         <Button x:Name="btn4" Click="saveEditInfo" Content="Salvar Alterações" HorizontalAlignment="Left" Margin="381,74,0,0" VerticalAlignment="Top" Height="30" Width="99"/>
-        <Button x:Name="btn4_Copy" Click="cleanData" Content="Limpar Dados" HorizontalAlignment="Left" Margin="381,109,0,0" VerticalAlignment="Top" Height="30" Width="99"/>
+        <Button x:Name="btn5" Click="cleanData" Content="Limpar Dados" HorizontalAlignment="Left" Margin="381,109,0,0" VerticalAlignment="Top" Height="30" Width="99"/>
+        <Label Grid.Column="1" Content="Busca Rápida:" HorizontalAlignment="Left" Margin="210,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="campoBusca" Grid.Column="1" HorizontalAlignment="Left" Margin="298,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"/>
+        <Button x:Name="btn6" Click="searchMob" Content="Buscar" HorizontalAlignment="Left" Margin="398,8,0,0" VerticalAlignment="Top" Height="21" Width="62" Grid.Column="1"/>
 
 
 

@@ -26,27 +26,49 @@ namespace NPCGener_Editor
         {
             InitializeComponent();
             ReadDataFromNPCGener();
-            FillListView();
+            FillListView("");
         }
 
-        private void FillListView()
+        private void FillListView(string specific)
         {
             lst1.Items.Clear();
-            string[] lines = File.ReadAllLines("../NPCGener.txt");
             int counter = 0;
             int counterMobs = 0;
-            foreach (string line in lines)
-            {
-                if (line.Contains("#"))
-                {
-                    string show = line.Substring(2) + " -" + lines[counter - 2].Substring(2);
-                    lst1.Items.Add(show);
-                    counterMobs++;
-                }
-                counter++;
-            }
+            if (File.Exists("../NPCGener.txt")) { 
+                string[] lines = File.ReadAllLines("../NPCGener.txt");
 
-            totalMobs.Text = counterMobs.ToString();
+                if (specific.Equals("")) {
+                    foreach (string line in lines)
+                    {
+                        if (line.Contains("#"))
+                        {
+                            string show = line.Substring(2) + " -" + lines[counter - 2].Substring(2);
+                            lst1.Items.Add(show);
+                            counterMobs++;
+                        }
+                        counter++;
+                    }
+
+                    totalMobs.Text = counterMobs.ToString();
+                } 
+                else
+                {
+                    foreach (string line in lines)
+                    {
+                        if (line.Contains(specific) && line.Contains("//"))
+                        {
+                            string show = lines[counter+2].Substring(2) + " -" + lines[counter].Substring(2);
+                            lst1.Items.Add(show);
+                            counterMobs++;
+                        }
+                        counter++;
+                    }
+
+                    totalMobs.Text = counterMobs.ToString();
+                }
+
+                
+            }
         }
 
         private void getInfoSelectedMob(object sender, RoutedEventArgs e)
@@ -58,7 +80,7 @@ namespace NPCGener_Editor
             {
                 if (line.Contains(id[0].ToString()))
                 {
-                    string desc = lines[counter - 2];
+                    string desc = lines[counter - 2][3..];
                     string[] minute = lines[counter + 1].Trim().Split(":");
                     string[] maxnum = lines[counter + 2].Trim().Split(":");
                     string[] mingroup = lines[counter + 3].Trim().Split(":");
@@ -103,14 +125,23 @@ namespace NPCGener_Editor
 
         private void ReadDataFromNPCGener()
         {
-            string[] lines = File.ReadAllLines("NPCGener.txt");
-            foreach (string line in lines)
+            if (File.Exists("I_NPCGener.txt"))
             {
-                if (line.Contains("INDEX"))
+                string[] lines = File.ReadAllLines("I_NPCGener.txt");
+                foreach (string line in lines)
                 {
-                    counter++;
+                    if (line.Contains("INDEX"))
+                    {
+                        counter++;
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Falha ao encontrar I_NPCGener.txt", "Erro ao abrir arquivo", MessageBoxButton.OK, MessageBoxImage.Error);
+                Application.Current.Shutdown();
+            }
+            
 
         }
 
@@ -119,7 +150,7 @@ namespace NPCGener_Editor
             int localCounter = 0;
 
             using StreamWriter file = new("../NPCGener.txt");
-            string[] lines = File.ReadAllLines("NPCGener.txt");
+            string[] lines = File.ReadAllLines("I_NPCGener.txt");
             foreach (string line in lines)
             {
                 if (line.Contains("INDEX"))
@@ -135,7 +166,7 @@ namespace NPCGener_Editor
             file.Close();
 
             totalMobs.Text = counter.ToString();
-            FillListView();
+            FillListView("");
         }
 
 
@@ -160,7 +191,7 @@ namespace NPCGener_Editor
             string destWait = text17.Text;
 
 
-            using StreamWriter file = new("NPCGener.txt", append: true);
+            using StreamWriter file = new("I_NPCGener.txt", append: true);
             await file.WriteLineAsync("\n\n// " + desc);
             await file.WriteLineAsync("// ********************************************");
             await file.WriteLineAsync("#\t[INDEX]");
@@ -230,7 +261,7 @@ namespace NPCGener_Editor
 
             file.Close();
             totalMobs.Text = counter.ToString();
-            FillListView();
+            FillListView("");
 
         }
 
@@ -265,11 +296,18 @@ namespace NPCGener_Editor
             text17.Text = "";
         }
 
+        private void searchMob(object sender, RoutedEventArgs e)
+        {
+            string searchString = campoBusca.Text;
+            FillListView(searchString);
+        }
+
         private static void lineChanger(string newText, string fileName, int line_to_edit)
         {
             string[] arrLine = File.ReadAllLines(fileName);
             arrLine[line_to_edit - 1] = newText;
             File.WriteAllLines(fileName, arrLine);
         }
+        
     }
 }
