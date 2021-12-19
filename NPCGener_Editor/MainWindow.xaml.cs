@@ -55,12 +55,19 @@ namespace NPCGener_Editor
                 {
                     foreach (string line in lines)
                     {
-                        if (line.Contains(specific) && line.Contains("//"))
+                        if (line.ToLower().Contains(specific.ToLower()) && line.Contains("//"))
                         {
                             string show = lines[counter+2].Substring(2) + " -" + lines[counter].Substring(2);
                             lst1.Items.Add(show);
                             counterMobs++;
                         }
+                        else if (line.ToLower().Contains("#\t"+specific.ToLower()))
+                        {
+                            string show = lines[counter].Substring(2) + " -" + lines[counter-2].Substring(2);
+                            lst1.Items.Add(show);
+                            counterMobs++;
+                        }
+
                         counter++;
                     }
 
@@ -73,6 +80,13 @@ namespace NPCGener_Editor
 
         private void getInfoSelectedMob(object sender, RoutedEventArgs e)
         {
+            if (lst1.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um NPC/MOB primeiro.", "Erro ao editar", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+                
+
             string[] id = lst1.SelectedItem.ToString().Split(" ");
             string[] lines = File.ReadAllLines("../NPCGener.txt");
             int counter = 0;
@@ -262,12 +276,157 @@ namespace NPCGener_Editor
             file.Close();
             totalMobs.Text = counter.ToString();
             FillListView("");
-
         }
 
         private async void saveEditInfo(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Em construção.", "Erro ao salvar", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (lst1.SelectedItem == null) {
+                MessageBox.Show("Selecione um NPC/MOB primeiro.", "Erro ao salvar", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            int counterData = -1;
+            int counterDataInside = 0;
+            string[] id = lst1.SelectedItem.ToString().Split(" ");
+            string[,] x = new string[1000,30];
+            using StreamWriter file = new("X_NPCGener.txt");
+            if (File.Exists("../NPCGener.txt"))
+            {
+                string[] lines = File.ReadAllLines("../NPCGener.txt");
+                foreach (string line in lines)
+                {
+                    // Checa o header
+                    if (line.Contains("//") && !line.Contains('*'))
+                    {
+                        counterData++;
+                        counterDataInside = 0;
+                        x[counterData, counterDataInside] = line;
+                    }
+
+                    // Linha normal
+                    else 
+                    {
+                        counterDataInside++;
+                        x[counterData, counterDataInside] = line;
+                    }
+
+                }
+
+                // Insere as linhas com as modificacoes feitas.
+                for (int i = 0; i < x.GetLength(0); i++)
+                {
+                    for (int j = 0; j < x.GetLength(1); j++)
+                    {
+
+                        if (x[i, j] != null)
+                        {
+                            
+                            if (x[i, 2].Contains(id[0]))
+                            {
+                                if (x[i, j].Contains("//") && !x[i, j].Contains('*'))
+                                {
+                                    x[i, j] = "// " + text1.Text;
+                                }
+                                else if (x[i,j].Contains("MinuteGenerate"))
+                                {
+                                    x[i, j] = "\tMinuteGenerate:\t"+text2.Text;
+                                }
+                                else if (x[i, j].Contains("MaxNumMob"))
+                                {
+                                    x[i, j] = "\tMaxNumMob:\t" + text3.Text;
+                                }
+                                else if (x[i, j].Contains("MinGroup"))
+                                {
+                                    x[i, j] = "\tMinGroup:\t" + text4.Text;
+                                }
+                                else if (x[i, j].Contains("MaxGroup"))
+                                {
+                                    x[i, j] = "\tMaxGroup:\t" + text5.Text;
+                                }
+                                else if (x[i, j].Contains("Leader"))
+                                {
+                                    x[i, j] = "\tLeader:\t" + text6.Text;
+                                }
+                                else if (x[i, j].Contains("Follower"))
+                                {
+                                    x[i, j] = "\tFollower:\t" + text7.Text;
+                                }
+                                else if (x[i, j].Contains("RouteType"))
+                                {
+                                    x[i, j] = "\tRouteType:\t" + text8.Text;
+                                }
+                                else if (x[i, j].Contains("Formation"))
+                                {
+                                    x[i, j] = "\tFormation:\t" + text9.Text;
+                                }
+                                else if (x[i, j].Contains("StartX"))
+                                {
+                                    x[i, j] = "\tStartX:\t" + text10.Text;
+                                }
+                                else if (x[i, j].Contains("StartY"))
+                                {
+                                    x[i, j] = "\tStartY:\t" + text11.Text;
+                                }
+                                else if (x[i, j].Contains("StartRange"))
+                                {
+                                    x[i, j] = "\tStartRange:\t" + text12.Text;
+                                }
+                                else if (x[i, j].Contains("StartWait"))
+                                {
+                                    x[i, j] = "\tStartWait:\t" + text13.Text;
+                                }
+                                else if (x[i, j].Contains("DestX"))
+                                {
+                                    x[i, j] = "\tDestX:\t" + text14.Text;
+                                }
+                                else if (x[i, j].Contains("DestY"))
+                                {
+                                    x[i, j] = "\tDestY:\t" + text15.Text;
+                                }
+                                else if (x[i, j].Contains("DestRange"))
+                                {
+                                    x[i, j] = "\tDestRange:\t" + text16.Text;
+                                }
+                                else if (x[i, j].Contains("DestWait"))
+                                {
+                                    x[i, j] = "\tDestWait:\t" + text17.Text;
+                                }
+                            }
+
+
+                            await file.WriteLineAsync(x[i, j]);
+                        }
+                    }
+                    
+                }
+                file.Close();
+                TransformIdToIndex();
+            }
+            else
+            {
+                MessageBox.Show("Falha ao encontrar NPCGener.txt", "Erro ao abrir arquivo", MessageBoxButton.OK, MessageBoxImage.Error);
+                Application.Current.Shutdown();
+            }
+        }
+
+        private async void TransformIdToIndex()
+        {
+            using StreamWriter file = new("I_NPCGener.txt");
+            string[] lines = File.ReadAllLines("X_NPCGener.txt");
+            foreach (string line in lines)
+            {
+                if (line.Contains("#"))
+                {
+                    await file.WriteLineAsync("#\t[INDEX]");
+                    continue;
+                }
+
+                await file.WriteLineAsync(line);
+            }
+
+            file.Close();
+            FillListView("");
+            File.Delete("X_NPCGener.txt");
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -300,6 +459,12 @@ namespace NPCGener_Editor
         {
             string searchString = campoBusca.Text;
             FillListView(searchString);
+        }
+
+        private void deleteMob(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Em desenvolvimento.", "Erro ao excluir", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
         }
 
         private static void lineChanger(string newText, string fileName, int line_to_edit)
