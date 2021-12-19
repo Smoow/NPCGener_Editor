@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:NPCGener_Editor"
         mc:Ignorable="d"
         Title="NPCGener Editor - Smoow" Height="750" Width="1000"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/background.png"/>
+    </Window.Background>
 
     <Grid Margin="10" Width="980" Height="465">
         <Grid.RowDefinitions>
