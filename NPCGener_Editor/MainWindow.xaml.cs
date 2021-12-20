@@ -74,60 +74,63 @@ namespace NPCGener_Editor
             }
 
 
+            int counterData = -1;
+            int counterDataInside = 0;
+            string[,] x = new string[10000, 30];
             string[] id = lst1.SelectedItem.ToString().Split(" ");
             string[] lines = File.ReadAllLines("../NPCGener.txt");
-            int counter = 0;
+
+
             foreach (string line in lines)
             {
-                if (line.Contains(id[0].ToString()))
+                // Checa o header
+                if (line.Contains("//") && !line.Contains('*'))
                 {
-                    //
-                    // Retirar o hardcoded desses counter+X para as linhas...
-                    // Isso afeta se precisarmos adc novas linhas para um NPC
-                    // no futuro.
-                    //
-                    // Talvez algo relacionado ao Contains resolva... pensar um pouco.
-                    //
-                    string desc = lines[counter - 2][3..];
-                    string[] minute = lines[counter + 1].Trim().Split(":");
-                    string[] maxnum = lines[counter + 2].Trim().Split(":");
-                    string[] mingroup = lines[counter + 3].Trim().Split(":");
-                    string[] maxgroup = lines[counter + 4].Trim().Split(":");
-                    string[] leader = lines[counter + 5].Trim().Split(":");
-                    string[] follower = lines[counter + 6].Trim().Split(":");
-                    string[] routetype = lines[counter + 7].Trim().Split(":");
-                    string[] formation = lines[counter + 8].Trim().Split(":");
-                    string[] startX = lines[counter + 9].Trim().Split(":");
-                    string[] startY = lines[counter + 10].Trim().Split(":");
-                    string[] startrange = lines[counter + 11].Trim().Split(":");
-                    string[] startwait = lines[counter + 12].Trim().Split(":");
-                    string[] destX = lines[counter + 13].Trim().Split(":");
-                    string[] destY = lines[counter + 14].Trim().Split(":");
-                    string[] destRange = lines[counter + 15].Trim().Split(":");
-                    string[] destWait = lines[counter + 16].Trim().Split(":");
-
-
-                    text1.Text = desc;
-                    text2.Text = minute[1].Trim();
-                    text3.Text = maxnum[1].Trim();
-                    text4.Text = mingroup[1].Trim();
-                    text5.Text = maxgroup[1].Trim();
-                    text6.Text = leader[1].Trim();
-                    text7.Text = follower[1].Trim();
-                    text8.Text = routetype[1].Trim();
-                    text9.Text = formation[1].Trim();
-                    text10.Text = startX[1].Trim();
-                    text11.Text = startY[1].Trim();
-                    text12.Text = startrange[1].Trim();
-                    text13.Text = startwait[1].Trim();
-                    text14.Text = destX[1].Trim();
-                    text15.Text = destY[1].Trim();
-                    text16.Text = destRange[1].Trim();
-                    text17.Text = destWait[1].Trim();
-                    break;
+                    counterData++;
+                    counterDataInside = 0;
+                    x[counterData, counterDataInside] = line;
                 }
 
-                counter++;
+                // Linha normal
+                else
+                {
+                    counterDataInside++;
+                    x[counterData, counterDataInside] = line;
+                }
+
+            }
+
+            // Insere as linhas com as modificacoes feitas.
+            for (int i = 0; i < x.GetLength(0); i++)
+            {
+                for (int j = 0; j < x.GetLength(1); j++)
+                {
+
+                    if (x[i, j] != null)
+                    {
+
+                        if (x[i, 2].Contains(id[0]))
+                        {
+                            if (x[i, j].Contains("//") && !x[i, j].Contains('*')) text1.Text = x[i, j][3..];
+                            else if (x[i, j].Contains("MinuteGenerate")) text2.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("MaxNumMob")) text3.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("MinGroup")) text4.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("MaxGroup")) text5.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Leader")) text6.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Follower")) text7.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("RouteType")) text8.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Formation")) text9.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("StartX")) text10.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("StartY")) text11.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("StartRange")) text12.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("StartWait")) text13.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("DestX")) text14.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("DestY")) text15.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("DestRange")) text16.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("DestWait")) text17.Text = x[i, j].Split(":")[1].Trim();
+                        }
+                    }
+                }
             }
         }
 
