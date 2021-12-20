@@ -1,0 +1,61 @@
+// NPC_01
+// ********************************************
+#	[INDEX]
+	MinuteGenerate:	1
+	MaxNumMob:	1
+	MinGroup:	1
+	MaxGroup:	71
+	Leader:	Martin
+	Follower:	Martin
+	RouteType:	2
+	Formation:	0
+	StartX:	2108
+	StartY:	2113
+	StartRange:	0
+	StartWait:	9
+	DestX:	2111
+	DestY:	2110
+	DestRange:	0
+	DestWait:	9
+
+
+// NPC_02
+// ********************************************
+#	[INDEX]
+	MinuteGenerate:	1
+	MaxNumMob:	1
+	MinGroup:	1
+	MaxGroup:	1
+	Leader:	Kibita
+	Follower:	Kibita
+	RouteType:	2
+	Formation:	0
+	StartX:	2125
+	StartY:	2110
+	StartRange:	0
+	StartWait:	9
+	DestX:	2115
+	DestY:	2115
+	DestRange:	0
+	DestWait:	9
+
+// NPC_03
+// ********************************************
+#	[INDEX]
+	MinuteGenerate:	1
+	MaxNumMob:	2
+	MinGroup:	1
+	MaxGroup:	4
+	Leader:	Aki
+	Follower:	Aki
+	RouteType:	2
+	Formation:	0
+	StartX:	2100
+	StartY:	2100
+	StartRange:	0
+	StartWait:	9
+	DestX:	2105
+	DestY:	2110
+	DestRange:	0
+	DestWait:	9
+
