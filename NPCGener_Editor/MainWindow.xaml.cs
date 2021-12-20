@@ -81,6 +81,13 @@ namespace NPCGener_Editor
             {
                 if (line.Contains(id[0].ToString()))
                 {
+                    //
+                    // Retirar o hardcoded desses counter+X para as linhas...
+                    // Isso afeta se precisarmos adc novas linhas para um NPC
+                    // no futuro.
+                    //
+                    // Talvez algo relacionado ao Contains resolva... pensar um pouco.
+                    //
                     string desc = lines[counter - 2][3..];
                     string[] minute = lines[counter + 1].Trim().Split(":");
                     string[] maxnum = lines[counter + 2].Trim().Split(":");
@@ -126,6 +133,9 @@ namespace NPCGener_Editor
 
         private void ReadDataFromNPCGener()
         {
+            feedbackAction.Text = "";
+            requestIndexText.Text = "";
+
             if (File.Exists("I_NPCGener.txt"))
             {
                 string[] lines = File.ReadAllLines("I_NPCGener.txt");
@@ -148,6 +158,8 @@ namespace NPCGener_Editor
 
         private async void GenerateIndexForNPCGener(object sender, RoutedEventArgs e)
         {
+            feedbackAction.Text = "";
+            requestIndexText.Text = "";
             int localCounter = 0;
 
             using StreamWriter file = new("../NPCGener.txt");
@@ -173,6 +185,24 @@ namespace NPCGener_Editor
 
         private async void SendDataToNPCGenerGeneric(object sender, RoutedEventArgs e)
         {
+            // Evita a quebra pela W2PP
+            try
+            {
+                int minNumeric = System.Convert.ToInt32(text4.Text);
+                int maxNumeric = System.Convert.ToInt32(text5.Text);
+                if ((maxNumeric - minNumeric) < 0)
+                {
+                    MessageBox.Show("MaxGroup não pode ser menor que MinGroup.", "Erro ao salvar", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            catch (System.FormatException ex)
+            {
+                MessageBox.Show("Apenas valores numéricos em MinGroup e MaxGroup.", "Erro ao salvar", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+
             string desc = text1.Text;
             string minute = text2.Text;
             string maxnum = text3.Text;
@@ -263,6 +293,7 @@ namespace NPCGener_Editor
             file.Close();
             totalMobs.Text = counter.ToString();
             FillListView("");
+            feedbackAction.Text = "NPC/MOB adicionado com sucesso! Não se esqueça de gerar o index.";
         }
 
         private async void saveEditInfo(object sender, RoutedEventArgs e)
@@ -272,6 +303,24 @@ namespace NPCGener_Editor
                 MessageBox.Show("Selecione um NPC/MOB primeiro.", "Erro ao salvar", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
+            // Evita a quebra pela W2PP
+            try
+            {
+                int minNumeric = System.Convert.ToInt32(text4.Text);
+                int maxNumeric = System.Convert.ToInt32(text5.Text);
+                if ((maxNumeric - minNumeric) < 0)
+                {
+                    MessageBox.Show("MaxGroup não pode ser menor que MinGroup.", "Erro ao salvar", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            catch (System.FormatException ex)
+            {
+                MessageBox.Show("Apenas valores numéricos em MinGroup e MaxGroup.", "Erro ao salvar", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
 
             int counterData = -1;
             int counterDataInside = 0;
@@ -311,76 +360,24 @@ namespace NPCGener_Editor
 
                             if (x[i, 2].Contains(id[0]))
                             {
-                                if (x[i, j].Contains("//") && !x[i, j].Contains('*'))
-                                {
-                                    x[i, j] = "// " + text1.Text;
-                                }
-                                else if (x[i, j].Contains("MinuteGenerate"))
-                                {
-                                    x[i, j] = "\tMinuteGenerate:\t" + text2.Text;
-                                }
-                                else if (x[i, j].Contains("MaxNumMob"))
-                                {
-                                    x[i, j] = "\tMaxNumMob:\t" + text3.Text;
-                                }
-                                else if (x[i, j].Contains("MinGroup"))
-                                {
-                                    x[i, j] = "\tMinGroup:\t" + text4.Text;
-                                }
-                                else if (x[i, j].Contains("MaxGroup"))
-                                {
-                                    x[i, j] = "\tMaxGroup:\t" + text5.Text;
-                                }
-                                else if (x[i, j].Contains("Leader"))
-                                {
-                                    x[i, j] = "\tLeader:\t" + text6.Text;
-                                }
-                                else if (x[i, j].Contains("Follower"))
-                                {
-                                    x[i, j] = "\tFollower:\t" + text7.Text;
-                                }
-                                else if (x[i, j].Contains("RouteType"))
-                                {
-                                    x[i, j] = "\tRouteType:\t" + text8.Text;
-                                }
-                                else if (x[i, j].Contains("Formation"))
-                                {
-                                    x[i, j] = "\tFormation:\t" + text9.Text;
-                                }
-                                else if (x[i, j].Contains("StartX"))
-                                {
-                                    x[i, j] = "\tStartX:\t" + text10.Text;
-                                }
-                                else if (x[i, j].Contains("StartY"))
-                                {
-                                    x[i, j] = "\tStartY:\t" + text11.Text;
-                                }
-                                else if (x[i, j].Contains("StartRange"))
-                                {
-                                    x[i, j] = "\tStartRange:\t" + text12.Text;
-                                }
-                                else if (x[i, j].Contains("StartWait"))
-                                {
-                                    x[i, j] = "\tStartWait:\t" + text13.Text;
-                                }
-                                else if (x[i, j].Contains("DestX"))
-                                {
-                                    x[i, j] = "\tDestX:\t" + text14.Text;
-                                }
-                                else if (x[i, j].Contains("DestY"))
-                                {
-                                    x[i, j] = "\tDestY:\t" + text15.Text;
-                                }
-                                else if (x[i, j].Contains("DestRange"))
-                                {
-                                    x[i, j] = "\tDestRange:\t" + text16.Text;
-                                }
-                                else if (x[i, j].Contains("DestWait"))
-                                {
-                                    x[i, j] = "\tDestWait:\t" + text17.Text;
-                                }
+                                if (x[i, j].Contains("//") && !x[i, j].Contains('*'))   x[i, j] = "// " + text1.Text;
+                                else if (x[i, j].Contains("MinuteGenerate"))            x[i, j] = "\tMinuteGenerate:\t" + text2.Text;
+                                else if (x[i, j].Contains("MaxNumMob"))                 x[i, j] = "\tMaxNumMob:\t" + text3.Text;
+                                else if (x[i, j].Contains("MinGroup"))                  x[i, j] = "\tMinGroup:\t" + text4.Text;
+                                else if (x[i, j].Contains("MaxGroup"))                  x[i, j] = "\tMaxGroup:\t" + text5.Text;
+                                else if (x[i, j].Contains("Leader"))                    x[i, j] = "\tLeader:\t" + text6.Text;
+                                else if (x[i, j].Contains("Follower"))                  x[i, j] = "\tFollower:\t" + text7.Text;
+                                else if (x[i, j].Contains("RouteType"))                 x[i, j] = "\tRouteType:\t" + text8.Text;
+                                else if (x[i, j].Contains("Formation"))                 x[i, j] = "\tFormation:\t" + text9.Text;
+                                else if (x[i, j].Contains("StartX"))                    x[i, j] = "\tStartX:\t" + text10.Text;
+                                else if (x[i, j].Contains("StartY"))                    x[i, j] = "\tStartY:\t" + text11.Text;
+                                else if (x[i, j].Contains("StartRange"))                x[i, j] = "\tStartRange:\t" + text12.Text;
+                                else if (x[i, j].Contains("StartWait"))                 x[i, j] = "\tStartWait:\t" + text13.Text;
+                                else if (x[i, j].Contains("DestX"))                     x[i, j] = "\tDestX:\t" + text14.Text;
+                                else if (x[i, j].Contains("DestY"))                     x[i, j] = "\tDestY:\t" + text15.Text;
+                                else if (x[i, j].Contains("DestRange"))                 x[i, j] = "\tDestRange:\t" + text16.Text;
+                                else if (x[i, j].Contains("DestWait"))                  x[i, j] = "\tDestWait:\t" + text17.Text;
                             }
-
 
                             await file.WriteLineAsync(x[i, j]);
                         }
@@ -389,6 +386,8 @@ namespace NPCGener_Editor
                 }
                 file.Close();
                 TransformIdToIndex();
+                feedbackAction.Text = "NPC/MOB editado com sucesso!";
+                requestIndexText.Text = " Não se esqueça de gerar o index.";
             }
             else
             {
@@ -507,6 +506,8 @@ namespace NPCGener_Editor
                 }
                 file.Close();
                 TransformIdToIndex();
+                feedbackAction.Text = "NPC/MOB apagado com sucesso!";
+                requestIndexText.Text = " Não se esqueça de gerar o index.";
             }
             else
             {

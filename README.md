@@ -1,5 +1,5 @@
 # NPCGener_Editor
-Application to edit NPCGener following W2PP format.<br>
+Application to edit NPCGener following W2PP format.<br><br>
 With this WPF Windows app it's possible to create, edit, delete, retrieve and visualize any information about NPCGener.
 
 -----------------
@@ -17,6 +17,6 @@ With this WPF Windows app it's possible to create, edit, delete, retrieve and vi
 ![image](https://user-images.githubusercontent.com/37567719/146711681-3bbeaa2b-d6ab-4c7f-b9ee-e72e17a38f92.png)
 - `Gerar Index` button will do the Index Control of your NPCGener.
   - With this, the final NPCGener (that one of W2PP reads) will be created on the previous path of the application.
-- Follow this path hierarquy and you'll should be fine too:
+- Follow this path hierarchy and you'll should be fine too:
   - `TMSrv/run/Create_NPCGener_Folder/This_App`
   - Thus your final NPCGener will stay at the correct folder (`TMSrv/run/NPCGener.txt` / `TMSrv/run/NPCGener.new.txt`)

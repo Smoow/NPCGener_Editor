@@ -62,7 +62,7 @@
         <Label Content="Follower" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
         <TextBox x:Name="text8" HorizontalAlignment="Left" Margin="146,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="RouteType" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="totalMobs" Grid.Column="1" HorizontalAlignment="Left" Margin="138,-108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42"/>
+        <TextBox x:Name="totalMobs" Grid.Column="1" HorizontalAlignment="Left" Margin="138,-108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" IsEnabled="False"/>
         <Label Grid.Column="1" Content="Total de NPCs/MOBs:" HorizontalAlignment="Left" Margin="10,-112,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Button x:Name="btn2" Click="GenerateIndexForNPCGener" Content="Gerar Index" HorizontalAlignment="Left" Margin="383,24,0,0" VerticalAlignment="Top" Height="31" Width="99" Background="#FFDDDDDD" Grid.Row="1"/>
         <ListView x:Name="lst1" Margin="15,-80,30,-97" SelectionChanged="ListView_SelectionChanged" Grid.Column="1" Grid.RowSpan="2" />
@@ -74,6 +74,8 @@
         <Button x:Name="btn6" Click="searchMob" Content="Buscar" HorizontalAlignment="Left" Margin="398,-110,0,0" VerticalAlignment="Top" Height="22" Width="62" Grid.Column="1"/>
         <Button x:Name="btn7" Click="deleteMob" Content="Remover" HorizontalAlignment="Left" Margin="383,219,0,0" VerticalAlignment="Top" Height="29" Width="99" Grid.RowSpan="2"/>
         <TextBlock HorizontalAlignment="Left" Margin="12,184,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ao alterar, salvar ou adicionar qualquer NPC/MOB, lembre-se de clicar no botão &quot;Gerar Index&quot;." VerticalAlignment="Top" Height="72" Width="470" FontSize="20" IsEnabled="False" TextAlignment="Center" FontWeight="Normal" Visibility="Visible"/>
+        <TextBox x:Name="feedbackAction" HorizontalAlignment="Left" Margin="188,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="216" IsEnabled="False" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Text="feedbackAction"/>
+        <TextBox x:Name="requestIndexText" HorizontalAlignment="Left" Margin="185,124,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" IsEnabled="False" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Text="requestIndexText"/>
 
 
 
