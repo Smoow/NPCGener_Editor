@@ -76,9 +76,14 @@ namespace NPCGener_Editor
 
             int counterData = -1;
             int counterDataInside = 0;
-            string[,] x = new string[10000, 30];
+            string[,] x = new string[10000, 40];
             string[] id = lst1.SelectedItem.ToString().Split(" ");
             string[] lines = File.ReadAllLines("../NPCGener.txt");
+
+            // Reseta todas as checkbox para que seja verificada novamente.
+            // Assim como seus fields de texto.
+            resetAllCheckBoxes();
+            resetAllSegmentFields();
 
 
             foreach (string line in lines)
@@ -128,16 +133,108 @@ namespace NPCGener_Editor
                             else if (x[i, j].Contains("DestY")) text15.Text = x[i, j].Split(":")[1].Trim();
                             else if (x[i, j].Contains("DestRange")) text16.Text = x[i, j].Split(":")[1].Trim();
                             else if (x[i, j].Contains("DestWait")) text17.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Segment1X"))
+                            {
+                                segment1x.IsEnabled = true;
+                                segment1y.IsEnabled = true;
+                                segment1wait.IsEnabled = true;
+                                segment1range.IsEnabled = true;
+                                segment1x.Text = x[i, j].Split(":")[1].Trim();
+                                segment1CheckBox.IsChecked = true;
+                            }
+                            else if (x[i, j].Contains("Segment1Y")) segment1y.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Segment1Wait")) segment1wait.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Segment1Range")) segment1range.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Segment2X"))
+                            {
+                                segment2x.IsEnabled = true;
+                                segment2y.IsEnabled = true;
+                                segment2wait.IsEnabled = true;
+                                segment2range.IsEnabled = true;
+                                segment2x.Text = x[i, j].Split(":")[1].Trim();
+                                segment2CheckBox.IsChecked = true;
+                            }
+                            else if (x[i, j].Contains("Segment2Y")) segment2y.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Segment2Wait")) segment2wait.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Segment2Range")) segment2range.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Segment3X"))
+                            {
+                                segment3x.IsEnabled = true;
+                                segment3y.IsEnabled = true;
+                                segment3wait.IsEnabled = true;
+                                segment3range.IsEnabled = true;
+                                segment3x.Text = x[i, j].Split(":")[1].Trim();
+                                segment3CheckBox.IsChecked = true;
+                            }
+                            else if (x[i, j].Contains("Segment3Y")) segment3y.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Segment3Wait")) segment3wait.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("Segment3Range")) segment3range.Text = x[i, j].Split(":")[1].Trim();
+                            else if (x[i, j].Contains("StartAction"))
+                            {
+                                startActionText.IsEnabled = true;
+                                startActionText.Text = x[i, j].Split(":")[1].Trim();
+                                startActionCheckBox.IsChecked = true;
+                            }
+                            else if (x[i, j].Contains("Segment1Action"))
+                            {
+                                segment1ActionText.IsEnabled = true;
+                                segment1ActionText.Text = x[i, j].Split(":")[1].Trim();
+                                segment1ActionCheckBox.IsChecked = true;
+                            }
+                            else if (x[i, j].Contains("Segment2Action"))
+                            {
+                                segment2ActionText.IsEnabled = true;
+                                segment2ActionText.Text = x[i, j].Split(":")[1].Trim();
+                                segment2ActionCheckBox.IsChecked = true;
+                            }
+                            else if (x[i, j].Contains("Segment3Action"))
+                            {
+                                segment3ActionText.IsEnabled = true;
+                                segment3ActionText.Text = x[i, j].Split(":")[1].Trim();
+                                segment3ActionCheckBox.IsChecked = true;
+                            }
                         }
                     }
                 }
             }
         }
 
+        private void resetAllSegmentFields()
+        {
+            segment1x.Text = "";
+            segment1y.Text = "";
+            segment1wait.Text = "";
+            segment1range.Text = "";
+            segment2x.Text = "";
+            segment2y.Text = "";
+            segment2wait.Text = "";
+            segment2range.Text = "";
+            segment3x.Text = "";
+            segment3y.Text = "";
+            segment3wait.Text = "";
+            segment3range.Text = "";
+            startActionText.Text = "";
+            segment1ActionText.Text = "";
+            segment2ActionText.Text = "";
+            segment3ActionText.Text = "";
+        }
+
+        private void resetAllCheckBoxes()
+        {
+            segment1CheckBox.IsChecked = false;
+            segment2CheckBox.IsChecked = false;
+            segment3CheckBox.IsChecked = false;
+            startActionCheckBox.IsChecked = false;
+            segment1ActionCheckBox.IsChecked = false;
+            segment2ActionCheckBox.IsChecked = false;
+            segment3ActionCheckBox.IsChecked = false;
+        }
+
         private void ReadDataFromNPCGener()
         {
             feedbackAction.Text = "";
             requestIndexText.Text = "";
+
 
             if (File.Exists("I_NPCGener.txt"))
             {
@@ -223,6 +320,22 @@ namespace NPCGener_Editor
             string destY = text15.Text;
             string destRange = text16.Text;
             string destWait = text17.Text;
+            string seg1x = segment1x.Text;
+            string seg1y = segment1y.Text;
+            string seg1w = segment1wait.Text;
+            string seg1r = segment1range.Text;
+            string seg2x = segment2x.Text;
+            string seg2y = segment2y.Text;
+            string seg2w = segment2wait.Text;
+            string seg2r = segment2range.Text;
+            string seg3x = segment3x.Text;
+            string seg3y = segment3y.Text;
+            string seg3w = segment3wait.Text;
+            string seg3r = segment3range.Text;
+            string startaction = startActionText.Text;
+            string seg1action = segment1ActionText.Text;
+            string seg2action = segment2ActionText.Text;
+            string seg3action = segment3ActionText.Text;
 
 
             using StreamWriter file = new("I_NPCGener.txt", append: true);
@@ -245,6 +358,50 @@ namespace NPCGener_Editor
             await file.WriteLineAsync("\tDestY:\t" + destY);
             await file.WriteLineAsync("\tDestRange:\t" + destRange);
             await file.WriteLineAsync("\tDestWait:\t" + destWait);
+
+            if (startActionCheckBox.IsChecked == true)
+            {
+                if (!startaction.Equals("")) await file.WriteLineAsync("\tStartAction:\t" + startaction);
+            }
+
+            if (segment1CheckBox.IsChecked == true)
+            {
+                if (!seg1x.Equals(""))
+                {
+                    await file.WriteLineAsync("\tSegment1X:\t" + seg1x);
+                    await file.WriteLineAsync("\tSegment1Y:\t" + seg1y);
+                    await file.WriteLineAsync("\tSegment1Wait:\t" + seg1w);
+                    await file.WriteLineAsync("\tSegment1Range:\t" + seg1r);
+                }
+
+                if (!seg1action.Equals("")) await file.WriteLineAsync("\tSegment1Action:\t" + seg1action);
+            }
+
+            if (segment2CheckBox.IsChecked == true)
+            {
+                if (!seg2x.Equals(""))
+                {
+                    await file.WriteLineAsync("\tSegment2X:\t" + seg2x);
+                    await file.WriteLineAsync("\tSegment2Y:\t" + seg2y);
+                    await file.WriteLineAsync("\tSegment2Wait:\t" + seg2w);
+                    await file.WriteLineAsync("\tSegment2Range:\t" + seg2r);
+                }
+
+                if (!seg2action.Equals("")) await file.WriteLineAsync("\tSegment2Action:\t" + seg2action);
+            }
+
+            if (segment3CheckBox.IsChecked == true)
+            {
+                if (!seg3x.Equals(""))
+                {
+                    await file.WriteLineAsync("\tSegment3X:\t" + seg3x);
+                    await file.WriteLineAsync("\tSegment3Y:\t" + seg3y);
+                    await file.WriteLineAsync("\tSegment3Wait:\t" + seg3w);
+                    await file.WriteLineAsync("\tSegment3Range:\t" + seg3r);
+                }
+
+                if (!seg3action.Equals("")) await file.WriteLineAsync("\tSegment3Action:\t" + seg3action);
+            }
 
             file.Close();
 
@@ -270,6 +427,23 @@ namespace NPCGener_Editor
             string destY = text15.Text;
             string destRange = text16.Text;
             string destWait = text17.Text;
+            string seg1x = segment1x.Text;
+            string seg1y = segment1y.Text;
+            string seg1w = segment1wait.Text;
+            string seg1r = segment1range.Text;
+            string seg2x = segment2x.Text;
+            string seg2y = segment2y.Text;
+            string seg2w = segment2wait.Text;
+            string seg2r = segment2range.Text;
+            string seg3x = segment3x.Text;
+            string seg3y = segment3y.Text;
+            string seg3w = segment3wait.Text;
+            string seg3r = segment3range.Text;
+            string startaction = startActionText.Text;
+            string seg1action = segment1ActionText.Text;
+            string seg2action = segment2ActionText.Text;
+            string seg3action = segment3ActionText.Text;
+
 
 
             using StreamWriter file = new("../NPCGener.txt", append: true);
@@ -293,10 +467,55 @@ namespace NPCGener_Editor
             await file.WriteLineAsync("\tDestRange:\t" + destRange);
             await file.WriteLineAsync("\tDestWait:\t" + destWait);
 
+            if (startActionCheckBox.IsChecked == true)
+            {
+                if (!startaction.Equals("")) await file.WriteLineAsync("\tStartAction:\t" + startaction);
+            }
+
+            if (segment1CheckBox.IsChecked == true)
+            {
+                if (!seg1x.Equals(""))
+                {
+                    await file.WriteLineAsync("\tSegment1X:\t" + seg1x);
+                    await file.WriteLineAsync("\tSegment1Y:\t" + seg1y);
+                    await file.WriteLineAsync("\tSegment1Wait:\t" + seg1w);
+                    await file.WriteLineAsync("\tSegment1Range:\t" + seg1r);
+                }
+
+                if (!seg1action.Equals("")) await file.WriteLineAsync("\tSegment1Action:\t" + seg1action);
+            }
+
+            if (segment2CheckBox.IsChecked == true)
+            {
+                if (!seg2x.Equals(""))
+                {
+                    await file.WriteLineAsync("\tSegment2X:\t" + seg2x);
+                    await file.WriteLineAsync("\tSegment2Y:\t" + seg2y);
+                    await file.WriteLineAsync("\tSegment2Wait:\t" + seg2w);
+                    await file.WriteLineAsync("\tSegment2Range:\t" + seg2r);
+                }
+
+                if (!seg2action.Equals("")) await file.WriteLineAsync("\tSegment2Action:\t" + seg2action);
+            }
+
+            if (segment3CheckBox.IsChecked == true)
+            {
+                if (!seg3x.Equals(""))
+                {
+                    await file.WriteLineAsync("\tSegment3X:\t" + seg3x);
+                    await file.WriteLineAsync("\tSegment3Y:\t" + seg3y);
+                    await file.WriteLineAsync("\tSegment3Wait:\t" + seg3w);
+                    await file.WriteLineAsync("\tSegment3Range:\t" + seg3r);
+                }
+
+                if (!seg3action.Equals("")) await file.WriteLineAsync("\tSegment3Action:\t" + seg3action);
+            }
+
             file.Close();
             totalMobs.Text = counter.ToString();
             FillListView("");
-            feedbackAction.Text = "NPC/MOB adicionado com sucesso! Não se esqueça de gerar o index.";
+            feedbackAction.Text = "NPC/MOB adicionado com sucesso!";
+            requestIndexText.Text = "Não se esqueça de gerar o index.";
         }
 
         private async void saveEditInfo(object sender, RoutedEventArgs e)
@@ -328,7 +547,7 @@ namespace NPCGener_Editor
             int counterData = -1;
             int counterDataInside = 0;
             string[] id = lst1.SelectedItem.ToString().Split(" ");
-            string[,] x = new string[10000, 30];
+            string[,] x = new string[10000, 40];
             using StreamWriter file = new("X_NPCGener.txt");
             if (File.Exists("../NPCGener.txt"))
             {
@@ -363,23 +582,233 @@ namespace NPCGener_Editor
 
                             if (x[i, 2].Contains(id[0]))
                             {
-                                if (x[i, j].Contains("//") && !x[i, j].Contains('*'))   x[i, j] = "// " + text1.Text;
-                                else if (x[i, j].Contains("MinuteGenerate"))            x[i, j] = "\tMinuteGenerate:\t" + text2.Text;
-                                else if (x[i, j].Contains("MaxNumMob"))                 x[i, j] = "\tMaxNumMob:\t" + text3.Text;
-                                else if (x[i, j].Contains("MinGroup"))                  x[i, j] = "\tMinGroup:\t" + text4.Text;
-                                else if (x[i, j].Contains("MaxGroup"))                  x[i, j] = "\tMaxGroup:\t" + text5.Text;
-                                else if (x[i, j].Contains("Leader"))                    x[i, j] = "\tLeader:\t" + text6.Text;
-                                else if (x[i, j].Contains("Follower"))                  x[i, j] = "\tFollower:\t" + text7.Text;
-                                else if (x[i, j].Contains("RouteType"))                 x[i, j] = "\tRouteType:\t" + text8.Text;
-                                else if (x[i, j].Contains("Formation"))                 x[i, j] = "\tFormation:\t" + text9.Text;
-                                else if (x[i, j].Contains("StartX"))                    x[i, j] = "\tStartX:\t" + text10.Text;
-                                else if (x[i, j].Contains("StartY"))                    x[i, j] = "\tStartY:\t" + text11.Text;
-                                else if (x[i, j].Contains("StartRange"))                x[i, j] = "\tStartRange:\t" + text12.Text;
-                                else if (x[i, j].Contains("StartWait"))                 x[i, j] = "\tStartWait:\t" + text13.Text;
-                                else if (x[i, j].Contains("DestX"))                     x[i, j] = "\tDestX:\t" + text14.Text;
-                                else if (x[i, j].Contains("DestY"))                     x[i, j] = "\tDestY:\t" + text15.Text;
-                                else if (x[i, j].Contains("DestRange"))                 x[i, j] = "\tDestRange:\t" + text16.Text;
-                                else if (x[i, j].Contains("DestWait"))                  x[i, j] = "\tDestWait:\t" + text17.Text;
+                                if (x[i, j].Contains("//") && !x[i, j].Contains('*')) x[i, j] = "// " + text1.Text;
+                                else if (x[i, j].Contains("MinuteGenerate")) x[i, j] = "\tMinuteGenerate:\t" + text2.Text;
+                                else if (x[i, j].Contains("MaxNumMob")) x[i, j] = "\tMaxNumMob:\t" + text3.Text;
+                                else if (x[i, j].Contains("MinGroup")) x[i, j] = "\tMinGroup:\t" + text4.Text;
+                                else if (x[i, j].Contains("MaxGroup")) x[i, j] = "\tMaxGroup:\t" + text5.Text;
+                                else if (x[i, j].Contains("Leader")) x[i, j] = "\tLeader:\t" + text6.Text;
+                                else if (x[i, j].Contains("Follower")) x[i, j] = "\tFollower:\t" + text7.Text;
+                                else if (x[i, j].Contains("RouteType")) x[i, j] = "\tRouteType:\t" + text8.Text;
+                                else if (x[i, j].Contains("Formation")) x[i, j] = "\tFormation:\t" + text9.Text;
+                                else if (x[i, j].Contains("StartX")) x[i, j] = "\tStartX:\t" + text10.Text;
+                                else if (x[i, j].Contains("StartY")) x[i, j] = "\tStartY:\t" + text11.Text;
+                                else if (x[i, j].Contains("StartRange")) x[i, j] = "\tStartRange:\t" + text12.Text;
+                                else if (x[i, j].Contains("StartWait")) x[i, j] = "\tStartWait:\t" + text13.Text;
+                                else if (x[i, j].Contains("DestX")) x[i, j] = "\tDestX:\t" + text14.Text;
+                                else if (x[i, j].Contains("DestY")) x[i, j] = "\tDestY:\t" + text15.Text;
+                                else if (x[i, j].Contains("DestRange")) x[i, j] = "\tDestRange:\t" + text16.Text;
+                                else if (x[i, j].Contains("DestWait")) x[i, j] = "\tDestWait:\t" + text17.Text;
+
+                                //
+                                // StartAction
+                                //
+                                if (x[i, j].Contains("StartAction"))
+                                {
+                                    if (startActionCheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tStartAction:\t" + startActionText.Text;
+                                    } else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                //
+                                // Segment1
+                                //
+                                if (x[i, j].Contains("Segment1X"))
+                                {
+                                    if (segment1CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment1X:\t" + segment1x.Text;
+                                        
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment1Y"))
+                                {
+                                    if (segment1CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment1Y:\t" + segment1y.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment1Wait"))
+                                {
+                                    if (segment1CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment1Wait:\t" + segment1wait.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment1Range"))
+                                {
+                                    if (segment1CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment1Range:\t" + segment1range.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment1Action"))
+                                {
+                                    if (segment1CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment1Action:\t" + segment1ActionText.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+
+                                //
+                                // Segment2
+                                //
+                                if (x[i, j].Contains("Segment2X"))
+                                {
+                                    if (segment2CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment2X:\t" + segment2x.Text;
+
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment2Y"))
+                                {
+                                    if (segment2CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment2Y:\t" + segment2y.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment2Wait"))
+                                {
+                                    if (segment2CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment2Wait:\t" + segment2wait.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment2Range"))
+                                {
+                                    if (segment2CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment2Range:\t" + segment2range.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment2Action"))
+                                {
+                                    if (segment2CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment2Action:\t" + segment2ActionText.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                //
+                                // Segment3
+                                //
+                                if (x[i, j].Contains("Segment3X"))
+                                {
+                                    if (segment3CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment3X:\t" + segment3x.Text;
+
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment3Y"))
+                                {
+                                    if (segment3CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment3Y:\t" + segment3y.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment3Wait"))
+                                {
+                                    if (segment3CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment3Wait:\t" + segment3wait.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment3Range"))
+                                {
+                                    if (segment3CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment3Range:\t" + segment3range.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (x[i, j].Contains("Segment3Action"))
+                                {
+                                    if (segment3CheckBox.IsChecked == true)
+                                    {
+                                        x[i, j] = "\tSegment3Action:\t" + segment3ActionText.Text;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+
+
                             }
 
                             await file.WriteLineAsync(x[i, j]);
@@ -390,7 +819,7 @@ namespace NPCGener_Editor
                 file.Close();
                 TransformIdToIndex();
                 feedbackAction.Text = "NPC/MOB editado com sucesso!";
-                requestIndexText.Text = " Não se esqueça de gerar o index.";
+                requestIndexText.Text = "Não se esqueça de gerar o index.";
             }
             else
             {
@@ -443,6 +872,8 @@ namespace NPCGener_Editor
             text15.Text = "";
             text16.Text = "";
             text17.Text = "";
+            resetAllCheckBoxes();
+            resetAllSegmentFields();
         }
 
         private void searchMob(object sender, RoutedEventArgs e)
@@ -510,7 +941,7 @@ namespace NPCGener_Editor
                 file.Close();
                 TransformIdToIndex();
                 feedbackAction.Text = "NPC/MOB apagado com sucesso!";
-                requestIndexText.Text = " Não se esqueça de gerar o index.";
+                requestIndexText.Text = "Não se esqueça de gerar o index.";
             }
             else
             {
@@ -524,6 +955,79 @@ namespace NPCGener_Editor
             string[] arrLine = File.ReadAllLines(fileName);
             arrLine[line_to_edit - 1] = newText;
             File.WriteAllLines(fileName, arrLine);
+        }
+
+        private void segment1func(object sender, RoutedEventArgs e)
+        {
+            segment1x.IsEnabled = (segment1CheckBox.IsChecked == true ? true : false);
+            segment1y.IsEnabled = (segment1CheckBox.IsChecked == true ? true : false);
+            segment1range.IsEnabled = (segment1CheckBox.IsChecked == true ? true : false);
+            segment1wait.IsEnabled = (segment1CheckBox.IsChecked == true ? true : false);
+
+            if (segment1CheckBox.IsChecked == false)
+            {
+                segment1x.Text = "";
+                segment1y.Text = "";
+                segment1wait.Text = "";
+                segment1range.Text = "";
+            }
+        }
+
+        private void segment2func(object sender, RoutedEventArgs e)
+        {
+            segment2x.IsEnabled = (segment2CheckBox.IsChecked == true ? true : false);
+            segment2y.IsEnabled = (segment2CheckBox.IsChecked == true ? true : false);
+            segment2range.IsEnabled = (segment2CheckBox.IsChecked == true ? true : false);
+            segment2wait.IsEnabled = (segment2CheckBox.IsChecked == true ? true : false);
+
+            if (segment2CheckBox.IsChecked == false)
+            {
+                segment2x.Text = "";
+                segment2y.Text = "";
+                segment2wait.Text = "";
+                segment2range.Text = "";
+            }
+        }
+
+        private void segment3func(object sender, RoutedEventArgs e)
+        {
+            segment3x.IsEnabled = (segment3CheckBox.IsChecked == true ? true : false);
+            segment3y.IsEnabled = (segment3CheckBox.IsChecked == true ? true : false);
+            segment3range.IsEnabled = (segment3CheckBox.IsChecked == true ? true : false);
+            segment3wait.IsEnabled = (segment3CheckBox.IsChecked == true ? true : false);
+
+            if (segment3CheckBox.IsChecked == false)
+            {
+                segment3x.Text = "";
+                segment3y.Text = "";
+                segment3wait.Text = "";
+                segment3range.Text = "";
+            }
+        }
+
+        private void startActionFunc(object sender, RoutedEventArgs e)
+        {
+            startActionText.IsEnabled = (startActionCheckBox.IsChecked == true ? true : false);
+
+            if (startActionCheckBox.IsChecked == false) { startActionText.Text = ""; }
+        }
+
+        private void segment1ActionFunc(object sender, RoutedEventArgs e)
+        {
+            segment1ActionText.IsEnabled = (segment1ActionCheckBox.IsChecked == true ? true : false);
+            if (segment1ActionCheckBox.IsChecked == false) { segment1ActionText.Text = ""; }
+        }
+
+        private void segment2ActionFunc(object sender, RoutedEventArgs e)
+        {
+            segment2ActionText.IsEnabled = (segment2ActionCheckBox.IsChecked == true ? true : false);
+            if (segment2ActionCheckBox.IsChecked == false) { segment2ActionText.Text = ""; }
+        }
+
+        private void segment3ActionFunc(object sender, RoutedEventArgs e)
+        {
+            segment3ActionText.IsEnabled = (segment3ActionCheckBox.IsChecked == true ? true : false);
+            if (segment3ActionCheckBox.IsChecked == false) { segment3ActionText.Text = ""; }
         }
 
     }
