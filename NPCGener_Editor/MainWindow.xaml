@@ -7,53 +7,55 @@
         mc:Ignorable="d"
         Title="NPCGener Editor - Smoow" Height="850" Width="1000"
         ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
-    <Window.Background>
-        <ImageBrush ImageSource="/background.png"/>
-    </Window.Background>
+    
 
     <Grid Margin="10,10,10,-6" Width="980">
-        <TextBox x:Name="text9" HorizontalAlignment="Left" Margin="143,201,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="401*"/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="formation" HorizontalAlignment="Left" Margin="143,201,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="Formation&#xA;" HorizontalAlignment="Left" Margin="7,197,0,0" VerticalAlignment="Top" Width="131" Height="24" FontWeight="Bold"/>
-        <TextBox x:Name="text10" HorizontalAlignment="Left" Margin="143,225,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="startX" HorizontalAlignment="Left" Margin="143,225,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="StartX" HorizontalAlignment="Left" Margin="7,221,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="text11" HorizontalAlignment="Left" Margin="143,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="startY" HorizontalAlignment="Left" Margin="143,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="StartY&#xA;" HorizontalAlignment="Left" Margin="7,244,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="text12" HorizontalAlignment="Left" Margin="143,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="startRange" HorizontalAlignment="Left" Margin="143,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="StartRange" HorizontalAlignment="Left" Margin="7,267,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="text13" HorizontalAlignment="Left" Margin="143,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="startWait" HorizontalAlignment="Left" Margin="143,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="StartWait" HorizontalAlignment="Left" Margin="7,288,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="text14" HorizontalAlignment="Left" Margin="143,314,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="destX" HorizontalAlignment="Left" Margin="143,314,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="DestX" HorizontalAlignment="Left" Margin="7,310,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="text15" HorizontalAlignment="Left" Margin="143,337,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="destY" HorizontalAlignment="Left" Margin="143,337,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="DestY" HorizontalAlignment="Left" Margin="7,331,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="text16" HorizontalAlignment="Left" Margin="143,358,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="destRange" HorizontalAlignment="Left" Margin="143,358,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="DestRange" HorizontalAlignment="Left" Margin="7,352,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="text17" HorizontalAlignment="Left" Margin="143,380,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="destWait" HorizontalAlignment="Left" Margin="143,380,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="DestWait" HorizontalAlignment="Left" Margin="7,374,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
 
 
 
-        <TextBox x:Name="text1" HorizontalAlignment="Left" Margin="143,3,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="334"/>
+        <TextBox x:Name="desc" HorizontalAlignment="Left" Margin="143,3,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="334"/>
         <Button x:Name="btn1" Click="SendDataToNPCGenerGeneric" Content="Adicionar" HorizontalAlignment="Left" Margin="367,466,0,0" VerticalAlignment="Top" Height="29" Width="99"/>
         <Label Content="Descrição" HorizontalAlignment="Left" Margin="7,-1,0,0" VerticalAlignment="Top" Width="131" Height="26" FontWeight="Bold"/>
-        <TextBox x:Name="text2" HorizontalAlignment="Left" Margin="143,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="minute" HorizontalAlignment="Left" Margin="143,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="MinuteGenerate" HorizontalAlignment="Left" Margin="7,25,0,0" VerticalAlignment="Top" Width="131" Height="26" FontWeight="Bold"/>
-        <TextBox x:Name="text3" HorizontalAlignment="Left" Margin="143,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="maxnum" HorizontalAlignment="Left" Margin="143,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="MaxNumMob" HorizontalAlignment="Left" Margin="7,51,0,0" VerticalAlignment="Top" Width="131" Height="24" FontWeight="Bold"/>
-        <TextBox x:Name="text4" HorizontalAlignment="Left" Margin="143,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="mingroup" HorizontalAlignment="Left" Margin="143,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="MinGroup" HorizontalAlignment="Left" Margin="7,75,0,0" VerticalAlignment="Top" Width="131" Height="26" FontWeight="Bold"/>
-        <TextBox x:Name="text5" HorizontalAlignment="Left" Margin="143,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="maxgroup" HorizontalAlignment="Left" Margin="143,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="MaxGroup" HorizontalAlignment="Left" Margin="7,100,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="text6" HorizontalAlignment="Left" Margin="143,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="leader" HorizontalAlignment="Left" Margin="143,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="Leader" HorizontalAlignment="Left" Margin="7,125,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="text7" HorizontalAlignment="Left" Margin="143,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="follower" HorizontalAlignment="Left" Margin="143,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="Follower" HorizontalAlignment="Left" Margin="7,150,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <TextBox x:Name="text8" HorizontalAlignment="Left" Margin="143,177,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
+        <TextBox x:Name="routetype" HorizontalAlignment="Left" Margin="143,177,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203"/>
         <Label Content="RouteType" HorizontalAlignment="Left" Margin="7,173,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
         <TextBox x:Name="totalMobs" HorizontalAlignment="Left" Margin="625,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" IsEnabled="False"/>
         <Label Content="Total de NPCs/MOBs:" HorizontalAlignment="Left" Margin="497,-2,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Button x:Name="btn2" Click="GenerateIndexForNPCGener" Content="Gerar Index" HorizontalAlignment="Left" Margin="367,540,0,0" VerticalAlignment="Top" Height="31" Width="99" Background="#FFDDDDDD"/>
-        <ListView x:Name="lst1" Margin="502,30,33,159" SelectionChanged="ListView_SelectionChanged" />
+        <ListView x:Name="lst1" Margin="502,30,33,131" SelectionChanged="ListView_SelectionChanged" />
         <Button x:Name="btn3" Click="getInfoSelectedMob" Content="Editar" HorizontalAlignment="Left" Margin="378,28,0,0" VerticalAlignment="Top" Height="30" Width="99"/>
         <Button x:Name="btn4" Click="saveEditInfo" Content="Salvar Alterações" HorizontalAlignment="Left" Margin="378,62,0,0" VerticalAlignment="Top" Height="30" Width="99"/>
         <Button x:Name="btn5" Click="cleanData" Content="Limpar Dados" HorizontalAlignment="Left" Margin="378,97,0,0" VerticalAlignment="Top" Height="30" Width="99"/>
@@ -62,8 +64,8 @@
         <Button x:Name="btn6" Click="searchMob" Content="Buscar" HorizontalAlignment="Left" Margin="885,0,0,0" VerticalAlignment="Top" Height="22" Width="62"/>
         <Button x:Name="btn7" Click="deleteMob" Content="Remover" HorizontalAlignment="Left" Margin="367,503,0,0" VerticalAlignment="Top" Height="29" Width="99"/>
         <TextBlock HorizontalAlignment="Left" Margin="477,685,0,0" TextWrapping="Wrap" Text="Ao alterar, salvar ou adicionar qualquer NPC/MOB, lembre-se de clicar no botão &quot;Gerar Index&quot;." VerticalAlignment="Top" Height="72" Width="470" FontSize="20" IsEnabled="False" TextAlignment="Center" FontWeight="Normal" Visibility="Visible"/>
-        <TextBox x:Name="feedbackAction" HorizontalAlignment="Left" Margin="394,776,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" IsEnabled="False" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Text="feedbackAction"/>
-        <TextBox x:Name="requestIndexText" HorizontalAlignment="Left" Margin="391,792,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" IsEnabled="False" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Text="requestIndexText"/>
+        <TextBox x:Name="feedbackAction" HorizontalAlignment="Left" Margin="607,746,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" IsEnabled="False" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Text="feedbackAction"/>
+        <TextBox x:Name="requestIndexText" HorizontalAlignment="Left" Margin="604,762,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" IsEnabled="False" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Text="requestIndexText"/>
         <TextBox x:Name="segment1x" HorizontalAlignment="Left" Margin="143,402,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
         <Label Content="Segment1X" HorizontalAlignment="Left" Margin="7,398,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
         <TextBox x:Name="segment1y" HorizontalAlignment="Left" Margin="143,425,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
