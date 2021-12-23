@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="NPCGener Editor - Smoow" Height="850" Width="1000"
         ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
-    
+
 
     <Grid Margin="10,10,10,-6" Width="980">
         <Grid.RowDefinitions>
@@ -56,9 +56,8 @@
         <Label Content="Total de NPCs/MOBs:" HorizontalAlignment="Left" Margin="497,-2,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Button x:Name="btn2" Click="GenerateIndexForNPCGener" Content="Gerar Index" HorizontalAlignment="Left" Margin="367,540,0,0" VerticalAlignment="Top" Height="31" Width="99" Background="#FFDDDDDD"/>
         <ListView x:Name="lst1" Margin="502,30,33,131" SelectionChanged="ListView_SelectionChanged" />
-        <Button x:Name="btn3" Click="getInfoSelectedMob" Content="Editar" HorizontalAlignment="Left" Margin="378,28,0,0" VerticalAlignment="Top" Height="30" Width="99"/>
-        <Button x:Name="btn4" Click="saveEditInfo" Content="Salvar Alterações" HorizontalAlignment="Left" Margin="378,62,0,0" VerticalAlignment="Top" Height="30" Width="99"/>
-        <Button x:Name="btn5" Click="cleanData" Content="Limpar Dados" HorizontalAlignment="Left" Margin="378,97,0,0" VerticalAlignment="Top" Height="30" Width="99"/>
+        <Button x:Name="btn4" Click="saveEditInfo" Content="Salvar Alterações" HorizontalAlignment="Left" Margin="378,37,0,0" VerticalAlignment="Top" Height="30" Width="99"/>
+        <Button x:Name="btn5" Click="cleanData" Content="Limpar Dados" HorizontalAlignment="Left" Margin="378,82,0,0" VerticalAlignment="Top" Height="29" Width="99"/>
         <Label Content="Busca Rápida:" HorizontalAlignment="Left" Margin="697,-2,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="campoBusca" HorizontalAlignment="Left" Margin="785,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"/>
         <Button x:Name="btn6" Click="searchMob" Content="Buscar" HorizontalAlignment="Left" Margin="885,0,0,0" VerticalAlignment="Top" Height="22" Width="62"/>
@@ -74,9 +73,9 @@
         <Label Content="Segment1Wait" HorizontalAlignment="Left" Margin="7,440,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
         <TextBox x:Name="segment1range" HorizontalAlignment="Left" Margin="143,468,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
         <Label Content="Segment1Range" HorizontalAlignment="Left" Margin="7,462,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <CheckBox x:Name="segment1CheckBox" Content="Segment1" Click="segment1func" HorizontalAlignment="Left" Margin="380,150,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="segment2CheckBox" Content="Segment2" Click="segment2func" HorizontalAlignment="Left" Margin="380,170,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="segment3CheckBox" Content="Segment3" Click="segment3func" HorizontalAlignment="Left" Margin="380,189,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="segment1CheckBox" Content="Segment1" Click="segment1func" HorizontalAlignment="Left" Margin="378,161,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="segment2CheckBox" Content="Segment2" Click="segment2func" HorizontalAlignment="Left" Margin="378,186,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="segment3CheckBox" Content="Segment3" Click="segment3func" HorizontalAlignment="Left" Margin="378,211,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="segment2x" HorizontalAlignment="Left" Margin="143,490,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
         <Label Content="Segment2X" HorizontalAlignment="Left" Margin="7,486,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
         <TextBox x:Name="segment2y" HorizontalAlignment="Left" Margin="143,513,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
@@ -93,10 +92,10 @@
         <Label Content="Segment3Wait" HorizontalAlignment="Left" Margin="7,615,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
         <TextBox x:Name="segment3range" HorizontalAlignment="Left" Margin="143,643,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
         <Label Content="Segment3Range" HorizontalAlignment="Left" Margin="7,637,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
-        <CheckBox x:Name="startActionCheckBox" Content="StartAction" Click="startActionFunc" HorizontalAlignment="Left" Margin="380,210,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="segment1ActionCheckBox" Content="Segment1Action" Click="segment1ActionFunc" HorizontalAlignment="Left" Margin="380,230,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="segment2ActionCheckBox" Content="Segment2Action" Click="segment2ActionFunc" HorizontalAlignment="Left" Margin="380,249,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="segment3ActionCheckBox" Content="Segment3Action" Click="segment3ActionFunc" HorizontalAlignment="Left" Margin="380,267,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="startActionCheckBox" Content="StartAction" Click="startActionFunc" HorizontalAlignment="Left" Margin="378,236,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="segment1ActionCheckBox" Content="Segment1Action" Click="segment1ActionFunc" HorizontalAlignment="Left" Margin="378,261,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="segment2ActionCheckBox" Content="Segment2Action" Click="segment2ActionFunc" HorizontalAlignment="Left" Margin="378,286,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="segment3ActionCheckBox" Content="Segment3Action" Click="segment3ActionFunc" HorizontalAlignment="Left" Margin="378,311,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="startActionText" HorizontalAlignment="Left" Margin="143,664,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="323" IsEnabled="False"/>
         <Label Content="StartAction" HorizontalAlignment="Left" Margin="7,660,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
         <TextBox x:Name="segment1ActionText" HorizontalAlignment="Left" Margin="143,687,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="323" IsEnabled="False"/>
@@ -105,5 +104,7 @@
         <Label Content="Segment2Action" HorizontalAlignment="Left" Margin="7,701,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
         <TextBox x:Name="segment3ActionText" HorizontalAlignment="Left" Margin="143,730,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="323" IsEnabled="False"/>
         <Label Content="Segment3Action" HorizontalAlignment="Left" Margin="7,723,0,0" VerticalAlignment="Top" Width="131" Height="25" FontWeight="Bold"/>
+        <Label Content="Ativar" HorizontalAlignment="Left" Margin="407,131,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="181" Margin="367,154,0,0" Stroke="Black" VerticalAlignment="Top" Width="130"/>
     </Grid>
 </Window>

@@ -942,7 +942,7 @@ namespace NPCGener_Editor
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (lst1.Items.Count != 0) getInfoSelectedMob(sender, e);
         }
 
         private void cleanData(object sender, RoutedEventArgs e)
